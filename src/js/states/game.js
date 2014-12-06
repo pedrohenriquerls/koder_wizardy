@@ -10,6 +10,7 @@ Game.prototype = {
 
   create: function () {
     this.map = this.game.add.tilemap('level1');
+    //this.game.world.setBounds(0, 0, 1920, 1920);
 
     //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
     this.map.addTilesetImage('stone_bricks', 'scenarioSprites');
@@ -23,10 +24,29 @@ Game.prototype = {
     
     //collision on blockedLayer
     this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
+    //this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
 
-    this.player = new Player(this.game, this.game.world.centerX, this.game.world.centerY)
+    var playerPosition = this.findObjectsByType('playerStart', this.map, 'playerLayer')
+    this.player = new Player(this.game, playerPosition[0].x, playerPosition[0].y)
+
+    //this.addColliders();
+
 
     //resizes the game world to match the layer dimensions
     this.blockedLayer.resizeWorld();
+  },
+
+  findObjectsByType: function(type, map, layer) {
+    var result = new Array();
+    map.objects[layer].forEach(function(element){
+      if(element.properties.type === type) {
+        //Phaser uses top left, Tiled bottom left so we have to adjust
+        //also keep in mind that the cup images are a bit smaller than the tile which is 16x16
+        //so they might not be placed in the exact position as in Tiled
+        element.y -= map.tileHeight;
+        result.push(element);
+      }      
+    });
+    return result;
   },
 };

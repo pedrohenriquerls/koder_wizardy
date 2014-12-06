@@ -102,7 +102,7 @@
                  "name":"hero",
                  "properties":
                     {
-
+                        "type": "playerStart"
                     },
                  "rotation":0,
                  "type":"playerStart",

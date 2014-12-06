@@ -15,7 +15,7 @@ Game.prototype = {
     this.map.addTilesetImage('stone_bricks', 'scenarioSprites');
     this.map.addTilesetImage('weapons_spells_torch_key_gems', 'objectsSprites');
     this.map.addTilesetImage('Players', 'playerSprites');
-    //this.map.addTilesetImage('monsters', 'monstersTiles');
+    this.map.addTilesetImage('monsters', 'monstersSprites');
 
     //create layer
     this.groundLayer = this.map.createLayer('groundLayer');

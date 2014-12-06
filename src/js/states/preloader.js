@@ -19,6 +19,7 @@ Preloader.prototype = {
     this.load.image('scenarioSprites', 'assets/images/blockLayer/stone_bricks.png');
     this.load.image('playerSprites', 'assets/images/Players.png');
     this.load.image('objectsSprites', 'assets/images/weapons_spells_torch_key_gems.png');
+    this.load.image('monstersSprites', 'assets/images/monsters.png');
   },
 
   create: function () {

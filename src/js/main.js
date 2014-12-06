@@ -1,6 +1,6 @@
 'use strict';
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'koder-knight-game');
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'mage-knight-game');
 
 window.Utils = require('./utils');
 window.playerState = {
@@ -12,5 +12,6 @@ game.state.add('Splash', require('./states/splash'));
 game.state.add('Preloader', require('./states/preloader'));
 game.state.add('Menu', require('./states/menu'));
 game.state.add('Game', require('./states/game'));
+game.state.add('Fight', require('./states/fight'));
 
 game.state.start('Boot');

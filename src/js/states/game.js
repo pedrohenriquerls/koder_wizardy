@@ -1,4 +1,5 @@
 var Player = require('../entities/player');
+var Enemy = require('../entities/enemy');
 
 var Game = function () {
   this.player = null;
@@ -28,6 +29,17 @@ Game.prototype = {
     var playerPosition = this.findObjectsByType('playerStart', this.map, 'playerLayer')
     this.player = new Player(this.game, playerPosition[0].x, playerPosition[0].y)
 
+    /** Spawning Skulls **/
+    this.skulls = this.game.add.group();
+
+    this.skulls.enableBody = true;
+    this.skulls.instances = []
+
+    var skulls = this.findObjectsByType('skull', this.map, 'enemiesLayer')
+    skulls.forEach(function(skull){
+      this.skulls.instances[this.skulls.length] = new Enemy(this.game, skull.x, skull.y, "skull")
+      this.skulls.create(skull.x, skull.y, "monstersSprites")
+    }, this)
 
     //resizes the game world to match the layer dimensions
     this.blockedLayer.resizeWorld();
@@ -35,6 +47,7 @@ Game.prototype = {
 
   update: function(){
     this.player.addCollider(this.game, this.blockedLayer)
+    this.game.physics.arcade.overlap(this.player, this.skulls, this.player.fight, null, this);
   },
 
   findObjectsByType: function(type, map, layer) {

@@ -24,7 +24,7 @@
         }, 
         {
          "draworder":"topdown",
-         "height":40,
+         "height":0,
          "name":"itemsLayer",
          "objects":[
                 {
@@ -75,52 +75,25 @@
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":25,
+         "width":0,
          "x":0,
          "y":0
         }, 
         {
          "draworder":"topdown",
-         "height":40,
+         "height":0,
          "name":"enemiesLayer",
-         "objects":[],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "width":25,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "height":40,
-         "name":"playerLayer",
          "objects":[
-                {
-                 "gid":125,
-                 "height":0,
-                 "name":"hero",
-                 "properties":
-                    {
-                        "type": "playerStart"
-                    },
-                 "rotation":0,
-                 "type":"playerStart",
-                 "visible":true,
-                 "width":0,
-                 "x":27.5,
-                 "y":554
-                }, 
                 {
                  "gid":253,
                  "height":0,
-                 "name":"",
+                 "name":"skull",
                  "properties":
                     {
-
+                     "type":"skull"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"enemy",
                  "visible":true,
                  "width":0,
                  "x":64,
@@ -129,13 +102,13 @@
                 {
                  "gid":256,
                  "height":0,
-                 "name":"",
+                 "name":"skull",
                  "properties":
                     {
-
+                     "type":"skull"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"enemy",
                  "visible":true,
                  "width":0,
                  "x":149,
@@ -144,13 +117,13 @@
                 {
                  "gid":253,
                  "height":0,
-                 "name":"",
+                 "name":"skull",
                  "properties":
                     {
-
+                     "type":"skull"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"enemy",
                  "visible":true,
                  "width":0,
                  "x":87.5,
@@ -159,13 +132,13 @@
                 {
                  "gid":256,
                  "height":0,
-                 "name":"",
+                 "name":"skull",
                  "properties":
                     {
-
+                     "type":"skull"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"enemy",
                  "visible":true,
                  "width":0,
                  "x":141,
@@ -174,7 +147,34 @@
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":25,
+         "width":0,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
+         "name":"playerLayer",
+         "objects":[
+                {
+                 "gid":125,
+                 "height":0,
+                 "name":"hero",
+                 "properties":
+                    {
+                     "type":"playerStart"
+                    },
+                 "rotation":0,
+                 "type":"playerStart",
+                 "visible":true,
+                 "width":0,
+                 "x":27.5,
+                 "y":554
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
          "x":0,
          "y":0
         }],

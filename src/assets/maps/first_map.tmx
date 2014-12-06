@@ -108,12 +108,33 @@
   <object gid="67" x="119" y="532.5"/>
   <object type="historyTeller" gid="85" x="65.5" y="572.5"/>
  </objectgroup>
- <objectgroup name="enemiesLayer"/>
+ <objectgroup name="enemiesLayer">
+  <object name="skull" type="enemy" gid="253" x="64" y="458">
+   <properties>
+    <property name="type" value="skull"/>
+   </properties>
+  </object>
+  <object name="skull" type="enemy" gid="256" x="149" y="494.5">
+   <properties>
+    <property name="type" value="skull"/>
+   </properties>
+  </object>
+  <object name="skull" type="enemy" gid="253" x="87.5" y="371">
+   <properties>
+    <property name="type" value="skull"/>
+   </properties>
+  </object>
+  <object name="skull" type="enemy" gid="256" x="141" y="404">
+   <properties>
+    <property name="type" value="skull"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="playerLayer">
-  <object name="hero" type="playerStart" gid="125" x="27.5" y="554"/>
-  <object gid="253" x="64" y="458"/>
-  <object gid="256" x="149" y="494.5"/>
-  <object gid="253" x="87.5" y="371"/>
-  <object gid="256" x="141" y="404"/>
+  <object name="hero" type="playerStart" gid="125" x="27.5" y="554">
+   <properties>
+    <property name="type" value="playerStart"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

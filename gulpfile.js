@@ -22,7 +22,13 @@ paths = {
   assets: 'src/assets/**/*',
   css:    'src/css/*.css',
   libs:   [
-    './src/bower_components/phaser-official/build/phaser.js'
+    './src/bower_components/phaser-official/build/phaser.js',
+    './src/bower_components/ace-builds/src/ace.js',
+    './src/bower_components/ace-builds/src/mode-jack.js',
+    './src/bower_components/ace-builds/src/mode-javascript.js',
+    './src/bower_components/ace-builds/src/worker-javascript.js'
+
+    //'./src/bower_components/ace/src/ace.js'
   ],
   js:     ['src/js/*.js', 'src/js/**/*.js'],
   entry: './src/js/main.js',
@@ -42,6 +48,7 @@ gulp.task('copy', ['clean'], function () {
 });
 
 gulp.task('copylibs', ['clean'], function () {
+  gutil.log(paths.libs)
   gulp.src(paths.libs)
     .pipe(gulpif(!watching, uglify({outSourceMaps: false})))
     .pipe(gulp.dest(paths.dist + 'js/lib'))

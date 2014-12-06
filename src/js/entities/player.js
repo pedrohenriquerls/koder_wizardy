@@ -1,3 +1,4 @@
+var FightSystem = require('../states/fight');
 var Player = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'playerSprites');
   game.physics.arcade.enable(this);
@@ -55,5 +56,12 @@ Player.prototype.loadAnimations = function(){
   this.animations.add('walkLeft', [6,7], 10);
 }
 
+Player.prototype.fight = function(player, enemy){
+  console.log("fight time!!!")
+  player.game.paused = true
+  
+  var fightSystem = new FightSystem(player, enemy)
+  fightSystem.createEditor()
+}
 
 module.exports = Player;

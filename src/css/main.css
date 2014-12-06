@@ -19,3 +19,12 @@ html, body {
 h1,h2,h3 {
     color: #fff;
 }
+
+#editor{
+  height: 180px;
+  width: 640px;
+  position: fixed;
+  bottom: 0;
+  left: 25%;
+  margin: 8px;
+}

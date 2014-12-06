@@ -9,9 +9,16 @@ Boot.prototype = {
   },
 
   create: function () {
-    this.game.input.maxPointers = 1;
-
     if (this.game.device.desktop) {
+       //scaling options
+      this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      
+      //have the game centered horizontally
+      this.scale.pageAlignHorizontally = true;
+      this.scale.pageAlignVertically = true;
+
+      //screen size will be set automatically
+      this.scale.setScreenSize(true);
       this.game.stage.scale.pageAlignHorizontally = true;
     } else {
       this.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
@@ -23,6 +30,9 @@ Boot.prototype = {
       this.game.stage.scale.pageAlignHorizontally = true;
       this.game.stage.scale.setScreenSize(true);
     }
+
+    //physics system
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     this.game.state.start('Preloader');
   }

@@ -13,7 +13,12 @@ Preloader.prototype = {
 
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.setPreloadSprite(this.asset);
-    this.load.image('testsprite', 'assets/test.png');
+    //this.load.image('testsprite', 'assets/test.png');
+
+    this.load.tilemap('level1', 'assets/maps/first_map.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('scenarioSprites', 'assets/images/blockLayer/stone_bricks.png');
+    this.load.image('playerSprites', 'assets/images/Players.png');
+    this.load.image('objectsSprites', 'assets/images/weapons_spells_torch_key_gems.png');
   },
 
   create: function () {

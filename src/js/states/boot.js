@@ -32,7 +32,8 @@ Boot.prototype = {
     }
 
     //physics system
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    //this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.physics.startSystem(Phaser.Physics.P2JS);
 
     this.game.state.start('Preloader');
   }

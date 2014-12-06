@@ -1,7 +1,7 @@
 var Player = require('../entities/player');
 
 var Game = function () {
-  this.testentity = null;
+  this.player = null;
 };
 
 module.exports = Game;
@@ -23,6 +23,8 @@ Game.prototype = {
     
     //collision on blockedLayer
     this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
+
+    this.player = new Player(this.game, this.game.world.centerX, this.game.world.centerY)
 
     //resizes the game world to match the layer dimensions
     this.blockedLayer.resizeWorld();

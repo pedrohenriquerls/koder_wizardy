@@ -20,11 +20,11 @@ Game.prototype = {
     //create layer
     this.groundLayer = this.map.createLayer('groundLayer');
     this.blockedLayer = this.map.createLayer('blockedLayer');
-
+    
     //collision on blockedLayer
-    //this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
+    this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
 
     //resizes the game world to match the layer dimensions
-    this.groundLayer.resizeWorld();
+    this.blockedLayer.resizeWorld();
   },
 };

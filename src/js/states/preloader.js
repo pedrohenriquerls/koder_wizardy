@@ -17,9 +17,10 @@ Preloader.prototype = {
 
     this.load.tilemap('level1', 'assets/maps/first_map.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('scenarioSprites', 'assets/images/blockLayer/stone_bricks.png');
-    this.load.image('playerSprites', 'assets/images/Players.png');
     this.load.image('objectsSprites', 'assets/images/weapons_spells_torch_key_gems.png');
-    this.load.image('monstersSprites', 'assets/images/monsters.png');
+
+    this.load.spritesheet('playerSprites', 'assets/images/Players.png', 16, 16);
+    this.load.spritesheet('monstersSprites', 'assets/images/monsters.png', 16, 16);
   },
 
   create: function () {

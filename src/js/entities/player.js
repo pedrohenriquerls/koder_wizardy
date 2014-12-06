@@ -1,6 +1,8 @@
 var Player = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'playerSprites');
-  game.physics.p2.enable(this);
+  game.physics.arcade.enable(this);
+
+  this.body.collideWorldBounds = true
 
   this.cursors = game.input.keyboard.createCursorKeys();
 
@@ -16,20 +18,21 @@ Player.prototype.constructor = Player;
  * Automatically called by World.update
  */
 Player.prototype.update = function() {
-	this.body.setZeroVelocity();
+	//player movement
+  this.body.velocity.y = 0;
+  this.body.velocity.x = 0;
 
-  if (this.cursors.up.isDown){
-      this.body.moveUp(300)
+  if(this.cursors.up.isDown) {
+    this.body.velocity.y -= 150;
   }
-  else if (this.cursors.down.isDown){
-      this.body.moveDown(300);
+  else if(this.cursors.down.isDown) {
+    this.body.velocity.y += 150;
   }
-
-  if (this.cursors.left.isDown){
-      this.body.velocity.x = -300;
+  if(this.cursors.left.isDown) {
+    this.body.velocity.x -= 150;
   }
-  else if (this.cursors.right.isDown){
-      this.body.moveRight(300);
+  else if(this.cursors.right.isDown) {
+    this.body.velocity.x += 150;
   }
 };
 

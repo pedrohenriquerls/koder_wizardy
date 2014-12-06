@@ -10,16 +10,9 @@ Boot.prototype = {
 
   create: function () {
     if (this.game.device.desktop) {
-       //scaling options
-      this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-      
-      //have the game centered horizontally
-      this.scale.pageAlignHorizontally = true;
-      this.scale.pageAlignVertically = true;
-
-      //screen size will be set automatically
-      this.scale.setScreenSize(true);
-      this.game.stage.scale.pageAlignHorizontally = true;
+      this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+      //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+      this.scale.setGameSize(400, 300);
     } else {
       this.game.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
       this.game.stage.scale.minWidth =  480;
@@ -32,8 +25,8 @@ Boot.prototype = {
     }
 
     //physics system
-    //this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    this.game.physics.startSystem(Phaser.Physics.P2JS);
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    //this.game.physics.startSystem(Phaser.Physics.P2JS);
 
     this.game.state.start('Preloader');
   }

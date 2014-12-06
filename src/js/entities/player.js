@@ -23,21 +23,24 @@ Player.prototype.update = function() {
   this.body.velocity.y = 0;
   this.body.velocity.x = 0;
 
+  var velocity = 60
+  var fps = 6
+
   if(this.cursors.up.isDown) {
-    this.body.velocity.y -= 150;
-    this.animations.play('walkTop', 30);
+    this.body.velocity.y -= velocity;
+    this.animations.play('walkTop', fps);
   }
   else if(this.cursors.down.isDown) {
-    this.body.velocity.y += 150;
-    this.animations.play('walkBottom', 30);
+    this.body.velocity.y += velocity;
+    this.animations.play('walkBottom', fps);
   }
   if(this.cursors.left.isDown) {
-    this.body.velocity.x -= 150;
-    this.animations.play('walkLeft', 30);
+    this.body.velocity.x -= velocity;
+    this.animations.play('walkLeft', fps);
   }
   else if(this.cursors.right.isDown) {
-    this.body.velocity.x += 150;
-    this.animations.play('walkRight', 30);
+    this.body.velocity.x += velocity;
+    this.animations.play('walkRight', fps);
   }
 }
 

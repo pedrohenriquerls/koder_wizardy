@@ -23,17 +23,18 @@ Game.prototype = {
     this.blockedLayer = this.map.createLayer('blockedLayer');
     
     //collision on blockedLayer
-    this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
-    //this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
+    this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
 
     var playerPosition = this.findObjectsByType('playerStart', this.map, 'playerLayer')
     this.player = new Player(this.game, playerPosition[0].x, playerPosition[0].y)
 
-    //this.addColliders();
-
 
     //resizes the game world to match the layer dimensions
     this.blockedLayer.resizeWorld();
+  },
+
+  update: function(){
+    this.player.addCollider(this.game, this.blockedLayer)
   },
 
   findObjectsByType: function(type, map, layer) {

@@ -18,7 +18,7 @@ Player.prototype.constructor = Player;
  * Automatically called by World.update
  */
 Player.prototype.update = function() {
-	//player movement
+  //player movement
   this.body.velocity.y = 0;
   this.body.velocity.x = 0;
 
@@ -34,6 +34,11 @@ Player.prototype.update = function() {
   else if(this.cursors.right.isDown) {
     this.body.velocity.x += 150;
   }
-};
+}
+
+Player.prototype.addCollider = function(game, layer){
+  game.physics.arcade.collide(this, layer);
+}
+
 
 module.exports = Player;

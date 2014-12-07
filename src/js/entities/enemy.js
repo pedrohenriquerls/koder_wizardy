@@ -37,7 +37,7 @@ var Enemy = function (sprite) {
   		this.destroy()
   	}else{
       var distance = this.game.math.distance(this.x, this.y, this.target.x, this.target.y);
-      if(distance <= 60){
+      if(distance <= 45){
         // If the distance > MIN_DISTANCE then move
         if (distance > this.MIN_DISTANCE) {
             // Calculate the angle to the target

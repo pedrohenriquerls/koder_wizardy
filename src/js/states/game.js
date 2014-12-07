@@ -12,9 +12,7 @@ Game.prototype = {
   create: function () {
     this.map = this.game.add.tilemap('level1');
     
-    //this.game.world.setBounds(0, 0, 1920, 1920);
 
-    //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
     this.map.addTilesetImage('stone_bricks', 'scenarioSprites');
     this.map.addTilesetImage('weapons_spells_torch_key_gems', 'objectsSprites');
     this.map.addTilesetImage('Players', 'playerSprites');
@@ -45,18 +43,12 @@ Game.prototype = {
       });
       _skull.instance = new Enemy(_skull)
     }, this)
-    //this.game.add.tween(this.skulls).to( { x: -100 }, 2000, Phaser.Easing.Linear.None, true, 0, 100, true);
-
-    //resizes the game world to match the layer dimensions
+    
     this.blockedLayer.resizeWorld();
 
     this.shadowTexture = this.game.add.bitmapData(this.game.width, this.game.height);
-
-    // Create an object that will use the bitmap as a texture
     this.lightSprite = this.game.add.image(this.game.camera.x, this.game.camera.y, this.shadowTexture);
 
-    // Set the blend mode to MULTIPLY. This will darken the colors of
-    // everything below this sprite.
     this.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
   },
 
@@ -92,7 +84,6 @@ Game.prototype = {
     this.shadowTexture.context.arc(heroX, heroY, radius, 0, Math.PI*2, false);
     this.shadowTexture.context.fill();
 
-    // This just tells the engine it should update the texture cache
     this.shadowTexture.dirty = true;
   },
 
@@ -100,9 +91,6 @@ Game.prototype = {
     var result = new Array();
     map.objects[layer].forEach(function(element){
       if(element.properties.type === type) {
-        //Phaser uses top left, Tiled bottom left so we have to adjust
-        //also keep in mind that the cup images are a bit smaller than the tile which is 16x16
-        //so they might not be placed in the exact position as in Tiled
         element.y -= map.tileHeight;
         result.push(element);
       }      

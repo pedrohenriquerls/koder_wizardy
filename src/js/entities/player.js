@@ -101,11 +101,13 @@ Player.prototype.fight = function(player, enemy){
   //arena.fill('#0fffff')
   player.animations.play('walkRight', this.fps);
   window.playerClone = game.add.sprite(0, 0, player.generateTexture());
+  window.playerClone.scale.x = window.playerClone.scale.y = 2
   window.playerClone.fixedToCamera = true;
   window.playerClone.cameraOffset.setTo(100, 180);
   
   enemy.animations.play('walkLeft', this.fps);
   window.enemyClone  = game.add.sprite(0, 0, enemy.generateTexture());
+  window.enemyClone.scale.x = window.enemyClone.scale.y = 2
   window.enemyClone.fixedToCamera = true;
   window.enemyClone.cameraOffset.setTo(250, 180);
 

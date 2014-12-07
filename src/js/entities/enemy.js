@@ -68,7 +68,8 @@ var Enemy = function (sprite) {
 }
 
 Enemy.prototype.profileGenerator = function(name){
-  var skullProfile = SkullProfiles[0]
+  var id = Math.round(Utils.rollDice(0, SkullProfiles.length))
+  var skullProfile = SkullProfiles[id]
 	this.attrsProfile = {
     name: skullProfile.name,
     life: skullProfile.life,

@@ -38,7 +38,7 @@ var Enemy = function (sprite) {
       window.enemyClone.setTexture(sprite.generateTexture())
   		
       setTimeout(function(){
-  		  window.enemiesKilled++
+  		  window.enemysKilled++
   		  window.player.clearFightScene()
 
         sprite.destroy()

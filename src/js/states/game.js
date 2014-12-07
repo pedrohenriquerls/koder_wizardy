@@ -1,5 +1,6 @@
 var Player = require('../entities/player');
 var Enemy = require('../entities/enemy');
+var GlobalHud    = require('../entities/globalHud');
 
 var Game = function () {
   this.player = null;
@@ -10,8 +11,9 @@ module.exports = Game;
 Game.prototype = {
 
   create: function () {
+    this.globalHud = new GlobalHud(this.game)
+
     this.map = this.game.add.tilemap('level1');
-    
 
     this.map.addTilesetImage('stone_bricks', 'scenarioSprites');
     this.map.addTilesetImage('weapons_spells_torch_key_gems', 'objectsSprites');
@@ -50,11 +52,13 @@ Game.prototype = {
     this.lightSprite = this.game.add.image(this.game.camera.x, this.game.camera.y, this.shadowTexture);
 
     this.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+    this.globalHud.createPlayerHud()
   },
 
   update: function(){
     this.player.addCollider(this.game, this.blockedLayer)
     this.game.physics.arcade.overlap(this.player, this.skulls, this.player.fight, null, this);
+    this.globalHud.updatePlayerHud()
 
     this.updateShadowTexture();   
     this.lightSprite.reset(this.game.camera.x, this.game.camera.y);

@@ -1,9 +1,7 @@
 var VisualTimer = require('../vendor/VisualTimer');
 var FightSystem = require('../states/fight');
-var GlobalHud    = require('../entities/globalHud');
 
 var Player = function (game, x, y) {
-  window.globalHud = new GlobalHud(game)
   Phaser.Sprite.call(this, game, x, y, 'playerSprites');
   game.physics.arcade.enable(this);
 

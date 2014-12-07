@@ -53,7 +53,8 @@ FightSystem.prototype.execute = function(){
 }
 
 FightSystem.prototype.basicCode = function(){
-	this.editor.insert("alert(enemy.teste)")
+	this.editor.insert("//You are the greater master of creation and destruction here\n")
+  this.editor.insert("//Change enemies attributes and create new spells\n")
 }
 
 module.exports = FightSystem;

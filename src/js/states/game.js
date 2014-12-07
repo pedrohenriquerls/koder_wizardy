@@ -49,11 +49,51 @@ Game.prototype = {
 
     //resizes the game world to match the layer dimensions
     this.blockedLayer.resizeWorld();
+
+    this.shadowTexture = this.game.add.bitmapData(this.game.width, this.game.height);
+
+    // Create an object that will use the bitmap as a texture
+    this.lightSprite = this.game.add.image(this.game.camera.x, this.game.camera.y, this.shadowTexture);
+
+    // Set the blend mode to MULTIPLY. This will darken the colors of
+    // everything below this sprite.
+    this.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
   },
 
   update: function(){
     this.player.addCollider(this.game, this.blockedLayer)
     this.game.physics.arcade.overlap(this.player, this.skulls, this.player.fight, null, this);
+
+    this.updateShadowTexture();   
+    this.lightSprite.reset(this.game.camera.x, this.game.camera.y);
+  },
+  updateShadowTexture: function(){
+    // Draw shadow
+    this.shadowTexture.context.fillStyle = 'rgb(10, 10, 10)';
+    this.shadowTexture.context.fillRect(0, 0, this.game.width, this.game.height);
+
+    var radius = 50 + this.game.rnd.integerInRange(1,5),
+        heroX = this.player.x - this.game.camera.x,
+        heroY = this.player.y - this.game.camera.y;
+    if(this.player.fighting){
+      heroX = heroY = 1000
+    }
+   
+    // Draw circle of light with a soft edge
+    var gradient =
+        this.shadowTexture.context.createRadialGradient(
+            heroX, heroY, 40 * 0.75,
+            heroX, heroY, radius);
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 1.0)');
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
+
+    this.shadowTexture.context.beginPath();
+    this.shadowTexture.context.fillStyle = gradient;
+    this.shadowTexture.context.arc(heroX, heroY, radius, 0, Math.PI*2, false);
+    this.shadowTexture.context.fill();
+
+    // This just tells the engine it should update the texture cache
+    this.shadowTexture.dirty = true;
   },
 
   findObjectsByType: function(type, map, layer) {

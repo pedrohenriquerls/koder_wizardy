@@ -73,7 +73,7 @@ Player.prototype.loadAnimations = function(){
 Player.prototype.loadSkills = function(){
   window.playerSkills = {
     debug: function(enemy){
-      var style = { font: "10px Arial", fill: "#fffff"};
+      var style = { font: "10px Arial", fill: "#fff"};
       var game = window.player.game
       var t = game.add.text(0, 0, JSON.stringify(enemy, null, " "), style);
       t.fixedToCamera = true;

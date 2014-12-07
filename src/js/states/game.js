@@ -73,8 +73,8 @@ Game.prototype = {
     this.shadowTexture.context.fillRect(0, 0, this.game.width, this.game.height);
 
     var radius = 50 + this.game.rnd.integerInRange(1,5),
-        heroX = this.player.x - this.game.camera.x,
-        heroY = this.player.y - this.game.camera.y;
+        heroX = this.player.x - this.game.camera.x + 9,
+        heroY = this.player.y - this.game.camera.y + 10;
     if(this.player.fighting){
       heroX = heroY = 1000
     }

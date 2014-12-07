@@ -28,10 +28,17 @@ GlobalHud.prototype.playerMessage = function(text){
 	  this.broadcastText = this.game.add.text(0, 0, "", style);
 	  this.broadcastText.fixedToCamera = true;
   	this.broadcastText.cameraOffset.setTo(50, 230);
-	}
 
+  	this.textBoxGroup = this.game.add.group();
+
+		this.textBoxGroup.add(this.textBox)
+		this.textBoxGroup.add(this.broadcastText)
+
+		this.game.add.existing(this.textBoxGroup);
+	}
+	this.textBoxGroup.alpha = 1
 	this.broadcastText.setText(text)
-	//this.game.paused = true
+	this.game.add.tween(this.textBoxGroup).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 5000, 0, false)
 }
 
 GlobalHud.prototype.createPlayerHud = function(){

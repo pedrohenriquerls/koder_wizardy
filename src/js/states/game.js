@@ -11,8 +11,6 @@ module.exports = Game;
 Game.prototype = {
 
   create: function () {
-    this.globalHud = new GlobalHud(this.game)
-
     this.map = this.game.add.tilemap('level1');
 
     this.map.addTilesetImage('stone_bricks', 'scenarioSprites');
@@ -52,6 +50,8 @@ Game.prototype = {
     this.lightSprite = this.game.add.image(this.game.camera.x, this.game.camera.y, this.shadowTexture);
 
     this.lightSprite.blendMode = Phaser.blendModes.MULTIPLY;
+
+    this.globalHud = new GlobalHud(this.game, this.player)
     this.globalHud.createPlayerHud()
   },
 

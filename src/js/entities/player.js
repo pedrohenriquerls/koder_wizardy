@@ -95,7 +95,7 @@ Player.prototype.loadSkills = function(){
 Player.prototype.fight = function(player, enemy){
   if(window.player.fighting == true)
     return
-    
+
   window.player.fighting = true
   
   var game = player.game

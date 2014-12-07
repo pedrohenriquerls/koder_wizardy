@@ -20,7 +20,7 @@ Preloader.prototype = {
     this.load.image('objectsSprites', 'assets/images/weapons_spells_torch_key_gems.png');
 
     this.load.spritesheet('playerSprites', 'assets/images/players-mages.png', 16, 16);
-    this.load.spritesheet('monstersSprites', 'assets/images/monsters.png', 16, 16);
+    this.load.spritesheet('monstersSprites', 'assets/images/zombie.png', 16, 16);
     this.load.spritesheet('timer', 'assets/images/timer.png', 150, 20);
   },
 

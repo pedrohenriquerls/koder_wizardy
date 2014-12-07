@@ -1,6 +1,9 @@
 var VisualTimer = require('../vendor/VisualTimer');
 var FightSystem = require('../states/fight');
+var GlobalHud    = require('../entities/globalHud');
+
 var Player = function (game, x, y) {
+  window.globalHud = new GlobalHud(game)
   Phaser.Sprite.call(this, game, x, y, 'playerSprites');
   game.physics.arcade.enable(this);
 
@@ -96,7 +99,6 @@ Player.prototype.fight = function(player, enemy){
     return
     
   window.player.fighting = true
-  console.log("fight time!!!")
   
   var game = player.game
 
@@ -144,6 +146,7 @@ Player.prototype.clearFightScene = function(){
   window.player.timer.destroy()
   this.visible = true
   this.fighting = false
+  window.globalHud.fightHudDestroy()
 }
 
 

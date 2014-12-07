@@ -1,17 +1,15 @@
-/* ==========================================
- * VisualTimer.js
- * https://github.com/terebentina/VisualTimer
- * ==========================================
- * Copyright 2014 Dan Caragea.
- *
- * Licensed under the MIT license
- * http://opensource.org/licenses/MIT
- * ========================================== */
 
-(function() {
-	"use strict";
+var timerTick = function() {
+		/*jshint validthis:true */
+		if(!this.timer)
+			return
+		var myTime = (this.type == 'down') ? this.remainingTime() : this.timer.seconds;
+		this.rect.width = Math.max(0, (myTime / this.totalTime) * this.fullWidth);
+		this.sprite.crop(this.rect);
+	}
 
-	function VisualTimer(opts) {
+var VisualTimer = function(opts) {
+		this.destroyed = false
 		this.type = 'down';
 		if (opts.type) {
 			this.type = opts.type;
@@ -37,9 +35,14 @@
 
 	VisualTimer.prototype = {
 		reset: function() {
+			console.log(this.destroyed)
+			if(this.destroyed)
+				return
+
 			if (this.timer) {
 				this.timer.stop();
 			}
+
 			var self = this;
 			this.hasFinished = false;
 			this.timer = this.game.time.create(true);
@@ -60,6 +63,7 @@
 
 		destroy: function(){
 			this.timer = null
+			this.destroyed = true
 
 			this.sprite.destroy()
 			this.empty.destroy()
@@ -71,6 +75,8 @@
 		},
 
 		start: function() {
+			if(this.destroyed)
+				return
 			this.reset();
 			this.timer.start();
 		},
@@ -93,17 +99,7 @@
 	};
 
 
-	function timerTick() {
-		/*jshint validthis:true */
-		if(!this.timer)
-			return
-		var myTime = (this.type == 'down') ? this.remainingTime() : this.timer.seconds;
-		this.rect.width = Math.max(0, (myTime / this.totalTime) * this.fullWidth);
-		this.sprite.crop(this.rect);
-	}
+	
 
 
-	if (module) {
-		module.exports = VisualTimer;
-	}
-})();
+module.exports = VisualTimer;

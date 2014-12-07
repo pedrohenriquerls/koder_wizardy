@@ -22,6 +22,7 @@ var Enemy = function (sprite) {
   sprite.animations.add('walkTop', [2,3], 10);
   sprite.animations.add('walkRight', [4,5], 10);
   sprite.animations.add('walkLeft', [6,7], 10);
+  sprite.animations.add('dead', [8], 0);
 
   sprite.alive = true
   this.sprite = sprite
@@ -31,12 +32,17 @@ var Enemy = function (sprite) {
 
   sprite.update = function(){
   	if(self.attrsProfile.life <= 0 && this.alive){
+      window.globalHud.showFightAction(self.attrsProfile.name, "Has defeated!!")
   		this.alive = false
+      sprite.animations.play('dead', 1)
+      window.enemyClone.setTexture(sprite.generateTexture())
   		
-  		window.enemiesKilled++
-  		window.player.clearFightScene()
+      setTimeout(function(){
+  		  window.enemiesKilled++
+  		  window.player.clearFightScene()
 
-  		this.destroy()
+        sprite.destroy()
+      }, 1000)
   	}else{
       var distance = this.game.math.distance(this.x, this.y, this.target.x, this.target.y);
       if(distance <= 45){
@@ -72,6 +78,14 @@ Enemy.prototype.profileGenerator = function(name){
 }
 
 Enemy.prototype.attack = function(callback){
+  if(!this.sprite.alive){
+    if(callback)
+      callback()
+    return
+  }
+    
+  window.globalHud.showFightAction(this.attrsProfile.name, "Attack!!")
+
   var attackOverload = this.attrsProfile.attack
   if(attackOverload){
     attackOverload()

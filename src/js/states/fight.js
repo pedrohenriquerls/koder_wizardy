@@ -1,3 +1,4 @@
+var Tutorials = require('../profiles/tutorials');
 var FightSystem = function (player, enemy) {
   this.player = player
   this.enemy  = enemy
@@ -50,7 +51,9 @@ FightSystem.prototype.createEditor = function(){
 }
 
 FightSystem.prototype.createQuest = function(){
-	return "The enemy dont do nothing if u attack him now!"
+  var text = Tutorials[window.enemysKilled + 1]
+  if(text)
+    window.globalHud.playerMessage(text)
 }
 
 FightSystem.prototype.enableKoderify = function() {
@@ -94,7 +97,12 @@ FightSystem.prototype.execute = function(){
   context = Array.prototype.concat.call(sadboxMock, args); // create the argument list for the sandbox
 
   var sandboxFunction = Function.prototype.bind.apply(sandbox, context); // bind the local variables to the sandbox
-  sandboxFunction()
+  try{
+    sandboxFunction()  
+  }catch(e){
+    window.globalHud.playerMessage("Error: "+e)
+  }
+  
 }
 
 FightSystem.prototype.basicCode = function(){

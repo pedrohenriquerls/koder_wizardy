@@ -1,6 +1,7 @@
 var Player = require('../entities/player');
 var Enemy = require('../entities/enemy');
 var GlobalHud    = require('../entities/globalHud');
+var Tutorials = require('../profiles/tutorials');
 
 var Game = function () {
   this.player = null;
@@ -53,6 +54,8 @@ Game.prototype = {
 
     this.globalHud = new GlobalHud(this.game, this.player)
     this.globalHud.createPlayerHud()
+
+    window.globalHud.playerMessage(Tutorials[0])
   },
 
   update: function(){

@@ -115,27 +115,30 @@ Player.prototype.fight = function(player, enemy){
   window.enemyClone.cameraOffset.setTo(250, 180);
 
   var fightSystem = new FightSystem(player, enemy)
+  fightSystem.createQuest()
 
-  window.player.timer = new VisualTimer({
-    game: game,
-    x: 110,
-    y: 20,
-    seconds: 10,
-    onComplete: function() {
-      fightSystem.disableKoderify()
-      setTimeout(function(){
-        enemy.instance.attack(fightSystem.enableKoderify)
-      }, 1000)
-    }
-  });
+  setTimeout(function(){
+    window.player.timer = new VisualTimer({
+      game: game,
+      x: 110,
+      y: 20,
+      seconds: 10,
+      onComplete: function() {
+        fightSystem.disableKoderify()
+        setTimeout(function(){
+          enemy.instance.attack(fightSystem.enableKoderify)
+        }, 1000)
+      }
+    });
 
-  player.visible = false
-  enemy.visible = false
+    player.visible = false
+    enemy.visible = false
 
-  window.currentEnemy = enemy.instance.attrsProfile
-  fightSystem.createEditor()
+    window.currentEnemy = enemy.instance.attrsProfile
+    fightSystem.createEditor()
 
-  window.player.timer.start()
+    window.player.timer.start()
+  }, 2000)
 }
 
 Player.prototype.clearFightScene = function(){

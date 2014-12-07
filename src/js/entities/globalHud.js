@@ -5,12 +5,11 @@ var GlobalHud = function (game, player, enemy) {
 	this.player = player
 	this.enemy  = enemy
 
-	this.style = { font: '24px Wizards Magic', fill: '#fff' }
 	window.globalHud = this
 }
 
 GlobalHud.prototype.getStyle = function(){
-	return new Object(this.style)
+	return { font: '24px Wizards Magic', fill: '#fff' }
 }
 
 GlobalHud.prototype.playerMessage = function(text){
@@ -27,7 +26,7 @@ GlobalHud.prototype.playerMessage = function(text){
 
 	  this.broadcastText = this.game.add.text(0, 0, "", style);
 	  this.broadcastText.fixedToCamera = true;
-  	this.broadcastText.cameraOffset.setTo(50, 230);
+  	this.broadcastText.cameraOffset.setTo(25, 230);
 
   	this.textBoxGroup = this.game.add.group();
 
@@ -57,6 +56,9 @@ GlobalHud.prototype.createPlayerHud = function(){
 }
 
 GlobalHud.prototype.updatePlayerHud = function(){
+	var style = this.getStyle()
+	style.font = "14px Arial"
+
 	this.life.setText("Life: "+Math.round(window.player.life))
 	this.enemiesKilled.setText("Score: "+ window.enemysKilled)
 }

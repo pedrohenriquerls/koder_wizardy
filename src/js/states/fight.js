@@ -14,6 +14,13 @@ FightSystem.prototype.createEditor = function(){
   ace.require("ace/ext/language_tools");
   this.editor = ace.edit("editor");
   this.editor.setOptions({enableBasicAutocompletion: true});
+  this.editor.setFocus = function(){
+    this.focus()
+    session = this.getSession();
+    var count = session.getLength();
+    //Go to end of the last line
+    this.gotoLine(count, session.getLine(count-1).length);
+  }
 
   var completer = {
     getCompletions: function(editor, session, pos, prefix, callback) {
@@ -47,6 +54,7 @@ FightSystem.prototype.createQuest = function(){
 }
 
 FightSystem.prototype.enableKoderify = function() {
+  window.editor.setFocus()
   executeLabel.inputEnabled = true
   executeLabel.setStyle({font: '24px Wizards Magic', fill: '#fff'});
 
@@ -92,6 +100,9 @@ FightSystem.prototype.execute = function(){
 FightSystem.prototype.basicCode = function(){
 	this.editor.insert("//You are the greater master of creation and destruction here\n")
   this.editor.insert("//Change enemies attributes and create new spells\n")
+  this.editor.insert("//Ctrl+Space for use the power of autocomplete\n")
+  this.editor.insert("")
+  this.editor.setFocus()
 }
 
 module.exports = FightSystem;

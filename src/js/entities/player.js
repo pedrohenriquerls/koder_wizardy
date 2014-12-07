@@ -73,7 +73,17 @@ Player.prototype.loadAnimations = function(){
 Player.prototype.loadSkills = function(){
   window.playerSkills = {
     debug: function(enemy){
-      console.log(enemy)
+      var style = { font: "10px Arial", fill: "#fffff"};
+      var game = window.player.game
+      var t = game.add.text(0, 0, JSON.stringify(enemy, null, " "), style);
+      t.fixedToCamera = true;
+      t.cameraOffset.setTo(0, 0);
+
+      game.add.tween(t).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 5000, 0, false).onUpdateCallback(function(){
+        window.setTimeout(function(){
+          t.destroy()  
+        }, 2000)
+      });
     }
   }
 }

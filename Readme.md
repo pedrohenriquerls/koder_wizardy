@@ -20,3 +20,13 @@ Here provide couple screenshots of your project. You can use a tool like https:/
 ## APIs used
 
 Provide a list of APIs you used in this project.
+
+## Arts
+Sprites, tiles, and other art used in Instant Dungeon!
+plus some misc. unused pieces.
+
+By
+Scott Matott
+Voytek Falendysz
+and
+JosÈ Luis PeirÛ Lima

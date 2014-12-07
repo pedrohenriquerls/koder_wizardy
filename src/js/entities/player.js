@@ -99,9 +99,15 @@ Player.prototype.fight = function(player, enemy){
 
   //var arena = new Phaser.Rectangle(150, player.y, 150, 200);
   //arena.fill('#0fffff')
-
-  window.playerClone = game.add.sprite(150, player.y, player.generateTexture());
-  window.enemyClone  = game.add.sprite(250, player.y, enemy.generateTexture());
+  player.animations.play('walkRight', this.fps);
+  window.playerClone = game.add.sprite(0, 0, player.generateTexture());
+  window.playerClone.fixedToCamera = true;
+  window.playerClone.cameraOffset.setTo(100, 180);
+  
+  enemy.animations.play('walkLeft', this.fps);
+  window.enemyClone  = game.add.sprite(0, 0, enemy.generateTexture());
+  window.enemyClone.fixedToCamera = true;
+  window.enemyClone.cameraOffset.setTo(250, 180);
 
   player.visible = false
   enemy.visible = false

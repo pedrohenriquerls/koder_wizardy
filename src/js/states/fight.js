@@ -29,7 +29,8 @@ FightSystem.prototype.execute = function(){
 
 	var worldThings = {
 		enemy: self.currentEnemy,
-		skills: self.playerSkills
+		skills: self.playerSkills,
+    debug: self.playerSkills.debug
 	}
 
 	var params = [];

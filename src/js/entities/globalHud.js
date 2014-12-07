@@ -13,6 +13,27 @@ GlobalHud.prototype.getStyle = function(){
 	return new Object(this.style)
 }
 
+GlobalHud.prototype.playerMessage = function(text){
+	if(!this.textBox && !this.broadcastText){
+		this.textBox = this.game.add.sprite(0, 0, "boxSprite")
+		this.textBox.width = 380
+		this.textBox.height = 80
+
+		this.textBox.fixedToCamera = true;
+	  this.textBox.cameraOffset.setTo(0, 220);
+
+	  var style = this.getStyle()
+		style.font = "10px Arial"
+
+	  this.broadcastText = this.game.add.text(0, 0, "", style);
+	  this.broadcastText.fixedToCamera = true;
+  	this.broadcastText.cameraOffset.setTo(50, 230);
+	}
+
+	this.broadcastText.setText(text)
+	//this.game.paused = true
+}
+
 GlobalHud.prototype.createPlayerHud = function(){
 	var style = this.getStyle()
 	style.font = "14px Arial"

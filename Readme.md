@@ -1,10 +1,13 @@
 # Koding Global Virtual Hackathon's
 
-## Koder Mage
+## Koder Wizardy
 
 [![Koding Hackathon](/images/badge.png?raw=true "Koding Hackathon")](https://koding.com/Hackathon)
 
-It is an inspired game zelda and strategy games with mechanical shift where to solve specific tasks or to win their battles , the player will have to write code to solve the problem posed.
+It is an inspired zelda game and strategy games with mechanical shift where to solve specific tasks or to win Their battles, the player will have to write code to solve the problem posed.
+In this game we try make a sandbox to player try execute any javascript with any objects in the game.
+example:
+  In the first battle we try teach to players about objects and your attrs, you can defeat the enemys with the public attr life, with a simple attribution like: enemy.life = -1 or enemy.life = 0
 
 ## Tech Stack
 
@@ -12,14 +15,10 @@ We used Phaser.io for Html5 game engine, Acec9 for code editor, gulp and bower f
 
 ## Screenshots
 
-Here provide couple screenshots of your project. You can use a tool like https://monosnap.com/welcome or https://droplr.com to take a screenshot. Animated gifs are also welcome.
+![KodeWizardy](http://i.imgur.com/Bm2KLKQ.png "KodeWizady")
+![KodeWizardy](http://i.imgur.com/vmvg8kS.png "KodeWizady")
+![KodeWizardy](http://i.imgur.com/8xqOCLT.png "KodeWizady")
 
-![Koding](https://koding.com/a/site.landing/images/slideshow/2x/ss-terminal.png "Koding")
-![Koding](https://koding.com/a/site.landing/images/slideshow/2x/ss-ide.png "Koding")
-
-## APIs used
-
-Provide a list of APIs you used in this project.
 
 ## Arts
 Sprites, tiles, and other art used in Instant Dungeon!

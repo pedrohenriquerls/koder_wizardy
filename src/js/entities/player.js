@@ -1,3 +1,4 @@
+var VisualTimer = require('../vendor/VisualTimer');
 var FightSystem = require('../states/fight');
 var Player = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'playerSprites');
@@ -111,6 +112,18 @@ Player.prototype.fight = function(player, enemy){
   window.enemyClone.fixedToCamera = true;
   window.enemyClone.cameraOffset.setTo(250, 180);
 
+  window.player.timer = new VisualTimer({
+    game: game,
+    x: 110,
+    y: 20,
+    seconds: 30,
+    onComplete: function() {
+      enemy.instance.attack()
+    }
+  });
+
+  window.player.timer.start()
+
   player.visible = false
   enemy.visible = false
   
@@ -125,8 +138,11 @@ Player.prototype.fight = function(player, enemy){
 Player.prototype.clearFightScene = function(){
   window.playerClone.destroy()
   window.enemyClone.destroy()
+  window.player.timer.destroy()
   this.visible = true
   this.fighting = false
 }
+
+
 
 module.exports = Player;

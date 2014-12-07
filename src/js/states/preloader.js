@@ -21,6 +21,7 @@ Preloader.prototype = {
 
     this.load.spritesheet('playerSprites', 'assets/images/players-mages.png', 16, 16);
     this.load.spritesheet('monstersSprites', 'assets/images/monsters.png', 16, 16);
+    this.load.spritesheet('timer', 'assets/images/timer.png', 150, 20);
   },
 
   create: function () {

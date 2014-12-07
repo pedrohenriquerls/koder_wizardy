@@ -23,6 +23,7 @@ var Enemy = function (sprite) {
   sprite.animations.add('walkLeft', [6,7], 10);
 
   sprite.alive = true
+  this.sprite = sprite
 
   this.profileGenerator()
   var self = this
@@ -67,6 +68,18 @@ Enemy.prototype.profileGenerator = function(name){
     power: skullProfile.power,
     description: skullProfile.description
   }
+}
+
+Enemy.prototype.attack = function(){
+  var attackOverload = this.attrsProfile.attack
+  if(attackOverload){
+    attackOverload()
+  }else{
+    console.log("Monster attack")
+  }
+  
+  window.player.timer.reset()
+  window.player.timer.start()
 }
 
 module.exports = Enemy;

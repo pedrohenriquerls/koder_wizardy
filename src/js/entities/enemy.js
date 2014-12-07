@@ -1,8 +1,11 @@
 var Enemy = function (game, x, y, type) {
   Phaser.Sprite.call(this, game, x, y, 'monstersSprites');
   game.add.existing(this);
+  game.physics.arcade.enable(this);
 
-  this.enableBody = true;
+  //this.body.collideWorldBounds = true
+  this.body.moves = false;
+  this.anchor.setTo(0, 0);
   this.physicsBodyType = Phaser.Physics.ARCADE;
 }
 

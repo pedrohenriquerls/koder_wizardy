@@ -11,6 +11,15 @@ var Player = function (game, x, y) {
   game.camera.follow(this);
 
   this.loadAnimations()
+
+  this.enemysKilled = 0
+
+  this.velocity = 60
+  this.fps = 6
+
+  this.fighting = false
+
+  window.player = this
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -21,27 +30,27 @@ Player.prototype.constructor = Player;
  */
 Player.prototype.update = function() {
   //player movement
+  if(this.fighting)
+    return
+
   this.body.velocity.y = 0;
   this.body.velocity.x = 0;
 
-  var velocity = 60
-  var fps = 6
-
   if(this.cursors.up.isDown) {
-    this.body.velocity.y -= velocity;
-    this.animations.play('walkTop', fps);
+    this.body.velocity.y -= this.velocity;
+    this.animations.play('walkTop', this.fps);
   }
   else if(this.cursors.down.isDown) {
-    this.body.velocity.y += velocity;
-    this.animations.play('walkBottom', fps);
+    this.body.velocity.y += this.velocity;
+    this.animations.play('walkBottom', this.fps);
   }
   if(this.cursors.left.isDown) {
-    this.body.velocity.x -= velocity;
-    this.animations.play('walkLeft', fps);
+    this.body.velocity.x -= this.velocity;
+    this.animations.play('walkLeft', this.fps);
   }
   else if(this.cursors.right.isDown) {
-    this.body.velocity.x += velocity;
-    this.animations.play('walkRight', fps);
+    this.body.velocity.x += this.velocity;
+    this.animations.play('walkRight', this.fps);
   }
 }
 
@@ -57,11 +66,28 @@ Player.prototype.loadAnimations = function(){
 }
 
 Player.prototype.fight = function(player, enemy){
-  console.log("fight time!!!")
-  player.game.paused = true
+  if(this.fighting == true)
+    return
+    
+  this.fighting = true
+  console.log("fight time!!!")  
+  
+  var game = player.game
+
+  //var arena = new Phaser.Rectangle(150, player.y, 150, 200);
+  //arena.fill('#0fffff')
+
+  var playerClone = game.add.sprite(150, player.y, player.generateTexture());
+  var enemyClone  = game.add.sprite(250, player.y, enemy.generateTexture());
+
+  player.visible = false
+  enemy.visible = false
+  //game.paused = true
   
   var fightSystem = new FightSystem(player, enemy)
   fightSystem.createEditor()
+
+  //this.fighting = false
 }
 
 module.exports = Player;

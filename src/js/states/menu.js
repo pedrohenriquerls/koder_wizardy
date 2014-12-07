@@ -11,7 +11,7 @@ Menu.prototype = {
     var y = this.game.height / 2;
     this.stage.backgroundColor = '#4b0049'
 
-    var title = this.add.text(40, 20, "Koder Wizard", { font: "50px Wizards Magic", fill: "#ffffff", align: "center" });
+    var title = this.add.text(40, 20, "Koder Wizardy", { font: "50px Wizards Magic", fill: "#ffffff", align: "center" });
 
     var start = this.add.text(140, 200, "Press to Start", { font: "16px Wizards Magic", fill: "#ffffff", align: "center" });
     //var instructions = this.add.text(150, 250, "Instructions", { font: "16px Wizards Magic", fill: "#ffffff", align: "center" });

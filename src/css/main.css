@@ -21,10 +21,8 @@ h1,h2,h3 {
 }
 
 #editor{
-  height: 180px;
+  height: 100%;
   width: 640px;
-  position: fixed;
-  bottom: 0;
+  margin-top: -20px;
   left: 25%;
-  margin: 8px;
 }

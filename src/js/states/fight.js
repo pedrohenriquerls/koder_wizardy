@@ -2,18 +2,34 @@ var FightSystem = function (player, enemy) {
   this.player = player
   this.enemy  = enemy
 }
-
+var suggestions = [
+  {name: 'fireball', value: 'fireball()', score: '1', meta: 'spell'},
+  {name: 'frostNova', value: 'frostNova()', score: '1', meta: 'spell'},
+  {name: 'if', value: 'if', score: '1', meta: 'keyword'},
+  {name: 'else', value: 'else', score: '1', meta: 'keyword'},
+  {name: 'for', value: 'for', score: '1', meta: 'keyword'},
+  {name: 'switch', value: 'switch', score: '1', meta: 'keyword'},
+  {name: 'case', value: 'case', score: '1', meta: 'keyword'},
+];
 FightSystem.prototype.createEditor = function(){
+  ace.require("ace/ext/language_tools");
   this.editor = ace.edit("editor");
-  //editor.setTheme("ace/theme/monokai");
-  this.editor.getSession().setMode("ace/mode/javascript");
-  window.editor = this.editor
+  this.editor.setOptions({enableBasicAutocompletion: true});
+  var completer = {
+    getCompletions: function(editor, session, pos, prefix, callback) {
+      callback(null, suggestions);
+    }
+  };
 
-  execute_label = this.player.game.add.text(0, 0, 'Koderify!!', { font: '24px Wizards Magic', fill: '#fff' });
-  execute_label.inputEnabled = true;
-  execute_label.events.onInputUp.add(this.execute)
-  execute_label.fixedToCamera = true;
-	execute_label.cameraOffset.setTo(280, 260);
+  this.editor.completers = [completer];
+  this.editor.getSession().setMode("ace/mode/javascript");
+  window.editor = this.editor;
+
+  executeLabel = this.player.game.add.text(0, 0, 'Koderify!!', { font: '24px Wizards Magic', fill: '#fff' });
+  executeLabel.inputEnabled = true;
+  executeLabel.events.onInputUp.add(this.execute)
+  executeLabel.fixedToCamera = true;
+  executeLabel.cameraOffset.setTo(280, 260);
 
 	if(this.editor.getValue().trim() == "")
   	this.basicCode()

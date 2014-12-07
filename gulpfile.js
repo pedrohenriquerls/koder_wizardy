@@ -26,6 +26,7 @@ paths = {
     './src/bower_components/ace-builds/src/ace.js',
     './src/bower_components/ace-builds/src/mode-jack.js',
     './src/bower_components/ace-builds/src/mode-javascript.js',
+    './src/bower_components/ace-builds/src/ext-language_tools.js',
     './src/bower_components/ace-builds/src/worker-javascript.js'
 
     //'./src/bower_components/ace/src/ace.js'

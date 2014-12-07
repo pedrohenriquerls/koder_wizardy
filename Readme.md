@@ -1,12 +1,14 @@
-# Koding Global Virtual Hackathon's Submission Example
+# Koding Global Virtual Hackathon's
 
-This is a sample submission repository for the hackathon. If you don't know what that is, please [go here](https://koding.com/Hackathon). You can fork this repo and use this as a starting point.
-
-## Description
+## Koder Mage
 
 [![Koding Hackathon](/images/badge.png?raw=true "Koding Hackathon")](https://koding.com/Hackathon)
 
-A brief introduction to your project. It should include the motivation behind the project and also how it addresses the hackthon theme you've selected.
+It is an inspired game zelda and strategy games with mechanical shift where to solve specific tasks or to win their battles , the player will have to write code to solve the problem posed.
+
+## Tech Stack
+
+We used Phaser.io for Html5 game engine, Acec9 for code editor, gulp and bower for automatization a lot of things.
 
 ## Screenshots
 

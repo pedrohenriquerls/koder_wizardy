@@ -122,7 +122,7 @@ Player.prototype.fight = function(player, enemy){
       game: game,
       x: 110,
       y: 20,
-      seconds: 10,
+      seconds: 30,
       onComplete: function() {
         fightSystem.disableKoderify()
         setTimeout(function(){

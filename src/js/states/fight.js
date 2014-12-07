@@ -57,7 +57,7 @@ FightSystem.prototype.createQuest = function(){
 }
 
 FightSystem.prototype.enableKoderify = function() {
-  window.editor.setFocus()
+  //window.editor.setFocus()
   executeLabel.inputEnabled = true
   executeLabel.setStyle({font: '24px Wizards Magic', fill: '#fff'});
 

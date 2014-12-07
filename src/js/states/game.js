@@ -59,6 +59,20 @@ Game.prototype = {
   },
 
   update: function(){
+    if(window.player.life <= 0){
+      //window.player.destroy()
+      var t = this.game.add.text(0, 0, "Game Over", { font: "30px Arial", fill: "#fff"});
+      t.fixedToCamera = true;
+      t.cameraOffset.setTo(100, 150);
+
+      var self = this
+
+      setTimeout(function(){
+        self.game.state.start("Menu");
+      }, 500)
+    }
+
+
     this.player.addCollider(this.game, this.blockedLayer)
     this.game.physics.arcade.overlap(this.player, this.skulls, this.player.fight, null, this);
     this.globalHud.updatePlayerHud()

@@ -25,18 +25,25 @@ FightSystem.prototype.createEditor = function(){
   this.editor.getSession().setMode("ace/mode/javascript");
   window.editor = this.editor;
 
-  executeLabel = this.player.game.add.text(0, 0, 'Koderify!!', { font: '24px Wizards Magic', fill: '#fff' });
-  executeLabel.inputEnabled = true;
-  executeLabel.events.onInputUp.add(this.execute)
-  executeLabel.fixedToCamera = true;
-  executeLabel.cameraOffset.setTo(280, 260);
-
+  this.executeLabel = this.player.game.add.text(0, 0, 'Koderify!!', { font: '24px Wizards Magic', fill: '#fff' });
+  this.executeLabel.inputEnabled = true;
+  this.executeLabel.events.onInputUp.add(this.execute)
+  this.executeLabel.fixedToCamera = true;
+  this.executeLabel.cameraOffset.setTo(280, 260);
 	if(this.editor.getValue().trim() == "")
   	this.basicCode()
 }
 
 FightSystem.prototype.createQuest = function(){
 	return "The enemy dont do nothing if u attack him now!"
+}
+
+FightSystem.prototype.enableKoderify = function() {
+  this.executeLabel.setStyle({fill: '#fff'});
+}
+
+FightSystem.prototype.disableKoderify = function() {
+  this.executeLabel.setStyle({fill: '#777'});
 }
 
 FightSystem.prototype.execute = function(){

@@ -5,17 +5,15 @@ var FightSystem = function (player, enemy) {
 
 FightSystem.prototype.createEditor = function(){
   this.editor = ace.edit("editor");
-  window.editor = this.editor
   //editor.setTheme("ace/theme/monokai");
   this.editor.getSession().setMode("ace/mode/javascript");
+  window.editor = this.editor
 
-  execute_label = window.player.game.add.text(300, 590, 'Execute', { font: '24px Arial', fill: '#fff' });
+  execute_label = this.player.game.add.text(300, 590, 'Execute', { font: '24px Arial', fill: '#fff' });
   execute_label.inputEnabled = true;
   execute_label.events.onInputUp.add(this.execute)
 
   this.basicCode()
-
-  
 }
 
 FightSystem.prototype.createQuest = function(){
@@ -23,15 +21,16 @@ FightSystem.prototype.createQuest = function(){
 }
 
 FightSystem.prototype.execute = function(){
+	var self = this
 	var code = this.editor.getValue();
 
-	var enemy = {teste: "blastoise"}
 	var worldThings = {
-		enemy: enemy
+		enemy: self.currentEnemy,
+		skills: self.playerSkills
 	}
 
-	var params = ["enemy"];
-  var args = [enemy];
+	var params = [];
+  var args = [];
 
   var sadboxMock = Object.create(null);
 

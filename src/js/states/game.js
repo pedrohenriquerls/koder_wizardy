@@ -37,11 +37,8 @@ Game.prototype = {
 
     var skulls = this.findObjectsByType('skull', this.map, 'enemiesLayer')
     skulls.forEach(function(skull){
-      //this.skulls.instances[this.skulls.length] = new Enemy(this.game, skull.x, skull.y, "skull")
       var _skull = this.skulls.create(skull.x, skull.y, "monstersSprites")
-      _skull.body.moves = false;
-      _skull.body.collideWorldBounds = true
-      _skull.physicsBodyType = Phaser.Physics.ARCADE;
+      _skull.instance = new Enemy(_skull)
     }, this)
     //this.game.add.tween(this.skulls).to( { x: -100 }, 2000, Phaser.Easing.Linear.None, true, 0, 100, true);
 

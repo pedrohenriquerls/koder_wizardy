@@ -18,8 +18,7 @@ var Player = function (game, x, y) {
   this.fps = 6
 
   this.fighting = false
-
-  window.player = this
+  this.loadSkills()
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -65,12 +64,20 @@ Player.prototype.loadAnimations = function(){
   this.animations.add('walkLeft', [6,7], 10);
 }
 
+Player.prototype.loadSkills = function(){
+  window.playerSkills = {
+    debug: function(enemy){
+      console.log(enemy)
+    }
+  }
+}
+
 Player.prototype.fight = function(player, enemy){
   if(this.fighting == true)
     return
     
   this.fighting = true
-  console.log("fight time!!!")  
+  console.log("fight time!!!")
   
   var game = player.game
 
@@ -82,9 +89,10 @@ Player.prototype.fight = function(player, enemy){
 
   player.visible = false
   enemy.visible = false
-  //game.paused = true
   
   var fightSystem = new FightSystem(player, enemy)
+
+  window.currentEnemy = enemy.instance.attrsProfile
   fightSystem.createEditor()
 
   //this.fighting = false

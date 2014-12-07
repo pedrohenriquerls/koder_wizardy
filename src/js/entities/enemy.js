@@ -1,26 +1,15 @@
-var Enemy = function (game, x, y, type) {
-  Phaser.Sprite.call(this, game, x, y, 'monstersSprites');
-  game.add.existing(this);
-  game.physics.arcade.enable(this);
+var SkullProfiles = require('../profiles/skulls');
 
-  //this.body.collideWorldBounds = true
-  this.body.moves = false;
-  this.anchor.setTo(0, 0);
-  this.physicsBodyType = Phaser.Physics.ARCADE;
+var Enemy = function (sprite) {
+  sprite.body.moves = false;
+  sprite.body.collideWorldBounds = true
+  sprite.physicsBodyType = Phaser.Physics.ARCADE;
+
+  this.profileGenerator()
 }
 
-Enemy.prototype = Object.create(Phaser.Sprite.prototype);
-Enemy.prototype.constructor = Enemy;
-
-/**
- * Automatically called by World.update
- */
-Enemy.prototype.update = function() {
-};
-
-Enemy.prototype.teste = function(){
-	console.log("teste")
+Enemy.prototype.profileGenerator = function(name){
+	this.attrsProfile = SkullProfiles[0]
 }
-
 
 module.exports = Enemy;

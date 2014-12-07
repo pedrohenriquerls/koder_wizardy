@@ -3,20 +3,25 @@ var FightSystem = function (player, enemy) {
   this.enemy  = enemy
 }
 var suggestions = [
-  {name: 'fireball', value: 'fireball()', score: '1', meta: 'spell'},
-  {name: 'frostNova', value: 'frostNova()', score: '1', meta: 'spell'},
   {name: 'if', value: 'if', score: '1', meta: 'keyword'},
   {name: 'else', value: 'else', score: '1', meta: 'keyword'},
   {name: 'for', value: 'for', score: '1', meta: 'keyword'},
   {name: 'switch', value: 'switch', score: '1', meta: 'keyword'},
   {name: 'case', value: 'case', score: '1', meta: 'keyword'},
 ];
+var executeLabel = null
 FightSystem.prototype.createEditor = function(){
   ace.require("ace/ext/language_tools");
   this.editor = ace.edit("editor");
   this.editor.setOptions({enableBasicAutocompletion: true});
+
   var completer = {
     getCompletions: function(editor, session, pos, prefix, callback) {
+      for (var param in window.playerSkills) {
+        if (window.playerSkills.hasOwnProperty(param)) {
+          suggestions.push({name: param, value: param, score: '1', meta: 'spell'});
+        }
+      }
       callback(null, suggestions);
     }
   };
@@ -25,11 +30,14 @@ FightSystem.prototype.createEditor = function(){
   this.editor.getSession().setMode("ace/mode/javascript");
   window.editor = this.editor;
 
-  this.executeLabel = this.player.game.add.text(0, 0, 'Koderify!!', { font: '24px Wizards Magic', fill: '#fff' });
-  this.executeLabel.inputEnabled = true;
-  this.executeLabel.events.onInputUp.add(this.execute)
-  this.executeLabel.fixedToCamera = true;
-  this.executeLabel.cameraOffset.setTo(280, 260);
+  executeLabel = this.player.game.add.text(0, 0, 'Koderify!!', { font: '24px Wizards Magic', fill: '#fff' });
+  executeLabel.inputEnabled = true;
+  executeLabel.events.onInputUp.add(this.execute)
+  
+  executeLabel.fixedToCamera = true;
+  executeLabel.cameraOffset.setTo(280, 260);
+  //this.executeLabel = executeLabel
+
 	if(this.editor.getValue().trim() == "")
   	this.basicCode()
 }
@@ -39,11 +47,14 @@ FightSystem.prototype.createQuest = function(){
 }
 
 FightSystem.prototype.enableKoderify = function() {
-  this.executeLabel.setStyle({fill: '#fff'});
+  executeLabel.inputEnabled = true
+  executeLabel.setStyle({font: '24px Wizards Magic', fill: '#fff'});
+
 }
 
 FightSystem.prototype.disableKoderify = function() {
-  this.executeLabel.setStyle({fill: '#777'});
+  executeLabel.inputEnabled = false
+  executeLabel.setStyle({font: '24px Wizards Magic', fill: '#777'});
 }
 
 FightSystem.prototype.execute = function(){
@@ -53,7 +64,9 @@ FightSystem.prototype.execute = function(){
 	var worldThings = {
 		enemy: self.currentEnemy,
 		skills: self.playerSkills,
-    debug: self.playerSkills.debug
+    debug: new Object(self.playerSkills.debug),
+    window: {},
+    document: {}
 	}
 
 	var params = [];

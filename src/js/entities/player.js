@@ -24,6 +24,8 @@ var Player = function (game, x, y) {
   this.playerClone = null
   this.enemyClone = null
 
+  this.life = 100
+
   window.player = this
 }
 
@@ -112,27 +114,28 @@ Player.prototype.fight = function(player, enemy){
   window.enemyClone.fixedToCamera = true;
   window.enemyClone.cameraOffset.setTo(250, 180);
 
+  var fightSystem = new FightSystem(player, enemy)
+
   window.player.timer = new VisualTimer({
     game: game,
     x: 110,
     y: 20,
-    seconds: 30,
+    seconds: 10,
     onComplete: function() {
-      enemy.instance.attack()
+      fightSystem.disableKoderify()
+      setTimeout(function(){
+        enemy.instance.attack(fightSystem.enableKoderify)
+      }, 1000)
     }
   });
 
-  window.player.timer.start()
-
   player.visible = false
   enemy.visible = false
-  
-  var fightSystem = new FightSystem(player, enemy)
 
   window.currentEnemy = enemy.instance.attrsProfile
   fightSystem.createEditor()
 
-  //this.fighting = false
+  window.player.timer.start()
 }
 
 Player.prototype.clearFightScene = function(){

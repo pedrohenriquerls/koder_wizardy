@@ -1,3 +1,4 @@
+var Utils = require('../utils');
 var SkullProfiles = require('../profiles/skulls');
 
 var Enemy = function (sprite) {
@@ -70,15 +71,21 @@ Enemy.prototype.profileGenerator = function(name){
   }
 }
 
-Enemy.prototype.attack = function(){
+Enemy.prototype.attack = function(callback){
   var attackOverload = this.attrsProfile.attack
   if(attackOverload){
     attackOverload()
   }else{
-    console.log("Monster attack")
+    var maxDmg = this.attrsProfile.power
+    var dmg = Utils.rollDice(0, maxDmg > 0 ? maxDmg : 1)
+
+    window.player.life -= dmg
   }
   
   window.player.timer.reset()
+  if(callback)
+    callback()
+
   window.player.timer.start()
 }
 

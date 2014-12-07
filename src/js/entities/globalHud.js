@@ -37,7 +37,7 @@ GlobalHud.prototype.playerMessage = function(text){
 	}
 	this.textBoxGroup.alpha = 1
 	this.broadcastText.setText(text)
-	this.game.add.tween(this.textBoxGroup).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 5000, 0, false)
+	this.game.add.tween(this.textBoxGroup).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true, 2500, 0, false)
 }
 
 GlobalHud.prototype.createPlayerHud = function(){

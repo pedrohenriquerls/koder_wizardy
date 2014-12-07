@@ -9,11 +9,14 @@ FightSystem.prototype.createEditor = function(){
   this.editor.getSession().setMode("ace/mode/javascript");
   window.editor = this.editor
 
-  execute_label = this.player.game.add.text(300, 590, 'Execute', { font: '24px Arial', fill: '#fff' });
+  execute_label = this.player.game.add.text(0, 0, 'Execute', { font: '24px Arial', fill: '#fff' });
   execute_label.inputEnabled = true;
   execute_label.events.onInputUp.add(this.execute)
+  execute_label.fixedToCamera = true;
+	execute_label.cameraOffset.setTo(300, 260);
 
-  this.basicCode()
+	if(this.editor.getValue().trim() == "")
+  	this.basicCode()
 }
 
 FightSystem.prototype.createQuest = function(){

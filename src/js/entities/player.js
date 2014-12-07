@@ -12,13 +12,18 @@ var Player = function (game, x, y) {
 
   this.loadAnimations()
 
-  this.enemysKilled = 0
+  window.enemysKilled = 0
 
   this.velocity = 60
   this.fps = 6
 
   this.fighting = false
   this.loadSkills()
+
+  this.playerClone = null
+  this.enemyClone = null
+
+  window.player = this
 }
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -29,11 +34,12 @@ Player.prototype.constructor = Player;
  */
 Player.prototype.update = function() {
   //player movement
-  if(this.fighting)
-    return
 
   this.body.velocity.y = 0;
   this.body.velocity.x = 0;
+
+  if(window.player.fighting || this.fighting)
+    return
 
   if(this.cursors.up.isDown) {
     this.body.velocity.y -= this.velocity;
@@ -73,10 +79,10 @@ Player.prototype.loadSkills = function(){
 }
 
 Player.prototype.fight = function(player, enemy){
-  if(this.fighting == true)
+  if(window.player.fighting == true)
     return
     
-  this.fighting = true
+  window.player.fighting = true
   console.log("fight time!!!")
   
   var game = player.game
@@ -84,8 +90,8 @@ Player.prototype.fight = function(player, enemy){
   //var arena = new Phaser.Rectangle(150, player.y, 150, 200);
   //arena.fill('#0fffff')
 
-  var playerClone = game.add.sprite(150, player.y, player.generateTexture());
-  var enemyClone  = game.add.sprite(250, player.y, enemy.generateTexture());
+  window.playerClone = game.add.sprite(150, player.y, player.generateTexture());
+  window.enemyClone  = game.add.sprite(250, player.y, enemy.generateTexture());
 
   player.visible = false
   enemy.visible = false
@@ -96,6 +102,13 @@ Player.prototype.fight = function(player, enemy){
   fightSystem.createEditor()
 
   //this.fighting = false
+}
+
+Player.prototype.clearFightScene = function(){
+  window.playerClone.destroy()
+  window.enemyClone.destroy()
+  this.visible = true
+  this.fighting = false
 }
 
 module.exports = Player;

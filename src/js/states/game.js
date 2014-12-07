@@ -11,6 +11,7 @@ Game.prototype = {
 
   create: function () {
     this.map = this.game.add.tilemap('level1');
+    
     //this.game.world.setBounds(0, 0, 1920, 1920);
 
     //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
@@ -27,7 +28,7 @@ Game.prototype = {
     this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
 
     var playerPosition = this.findObjectsByType('playerStart', this.map, 'playerLayer')
-    this.player = new Player(this.game, playerPosition[0].x, playerPosition[0].y)
+    this.player = new Player(this.game, playerPosition[0].x, playerPosition[0].y)  
 
     /** Spawning Skulls **/
     this.skulls = this.game.add.group();
@@ -38,6 +39,10 @@ Game.prototype = {
     var skulls = this.findObjectsByType('skull', this.map, 'enemiesLayer')
     skulls.forEach(function(skull){
       var _skull = this.skulls.create(skull.x, skull.y, "monstersSprites")
+
+      Object.keys(skull.properties).forEach(function(key){
+        _skull[key] = skull.properties[key];
+      });
       _skull.instance = new Enemy(_skull)
     }, this)
     //this.game.add.tween(this.skulls).to( { x: -100 }, 2000, Phaser.Easing.Linear.None, true, 0, 100, true);
@@ -63,5 +68,5 @@ Game.prototype = {
       }      
     });
     return result;
-  },
+  }
 };

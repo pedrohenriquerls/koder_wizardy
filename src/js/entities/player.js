@@ -78,7 +78,7 @@ Player.prototype.loadSkills = function(){
       var game = window.player.game
       var t = game.add.text(0, 0, JSON.stringify(enemy, null, " "), style);
       t.fixedToCamera = true;
-      t.cameraOffset.setTo(0, 0);
+      t.cameraOffset.setTo(0, 40);
 
       game.add.tween(t).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true, 5000, 0, false).onUpdateCallback(function(){
         window.setTimeout(function(){

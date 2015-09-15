@@ -8,6 +8,8 @@ It is an inspired zelda game and strategy games with mechanical shift where to s
 In this game we try make a sandbox to player try execute any javascript with any objects in the game.
 example:
   In the first battle we try teach to players about objects and your attrs, you can defeat the enemys with the public attr life, with a simple attribution like: enemy.life = -1 or enemy.life = 0
+  
+[Play this game here!](http://pedrohenriquerls.github.io/koder_wizardy/)
 
 ## Tech Stack
 
